@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Meine erste Karte</title>
+    <title>The place to be</title>
     <link rel="stylesheet" href="C:\Leaflet\leaflet.css">
     <style>
         #map { /* Definieren Sie die Höhe und Breite Ihrer Karte */
@@ -21,41 +21,16 @@
             attribution: 'Kartenquelle: <a href="https://www.openstreetmap.org">OpenStreetMap</a>'
         }).addTo(map);
 
-        var marker = L.marker([49.7469, 6.653])
-        var popupContent = '<img src="./Test_Foto/Petrisberg.jpg" alt="P-berg" style="width: 300px">';
+        var marker = L.marker([49.75013, 6.67425])
+        var popupContent = 'The place to be';
         marker.bindPopup(popupContent);
         marker.addTo(map);
         
         
-        var circle = L.circleMarker([49.75438, 6.66488], {
-            color: 'red',
-            fillcolor: '#f03',
-            fillopacity: 0.5,
-            radius: 10
-        })
-        .bindPopup("<b>Turm</b>")
-        .addTo(map)
 
         // Marker auf den Aussichtspunkt in Trier gesetzt
             
-        marker
-        var polygon = L.polygon([
-             [49.74575, 6.67819],
-            [49.74589, 6.67718],
-            [49.74571, 6.67708],
-            [49.74555, 6.6781]
-            ], {color: 'red'})
-            .addTo(map);
 
-
-
-    map.on('click', function(e) {
-
-    var lat = e.latlng.lat;
-    var lon = e.latlng.lng;
-
-    L.marker([lat, lon]).addTo(map);
-});
 
 
 
