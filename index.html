@@ -35,25 +35,16 @@
         })
         scale.addTo(map);
 
-        var marker = L.marker([49.7779, 6.6415])
-        var popupContent = 'Weisshauswald';
-        marker.bindPopup(popupContent);
-        marker.addTo(map);
+        var Weisshaus = new L.marker    ([49.7779, 6.6415]); //noch verorten
+        var Busental = new L.marker    ([49.7679, 6.6515]); // noch verorten
 
-        var marker = L.marker([49.7488, 6.7336])
-        var popupContent = 'Götterhüttentrail';
-        marker.bindPopup(popupContent);
-        marker.addTo(map);
+        L.layerGroup([
 
-        var marker = L.marker([49.7681, 6.6089])
-        var popupContent = 'Trierweiler';
-        marker.bindPopup(popupContent);
-        marker.addTo(map);
+                        Weisshaus,
+                        Busental
+                    ])
 
-        var marker = L.marker([49.7236, 6.6519])
-        var popupContent = 'Franzosenwald';
-        marker.bindPopup(popupContent);
-        marker.addTo(map);
+                    .addTo(map)
         
     
             
