@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Best Bike Spots Trier</title>
+    <title>Wandern in Trier und Saarland</title>
     <link rel="stylesheet" href="leaflet.css">
     <style>
         body {
@@ -23,9 +23,26 @@
     <script>
         var map = L.map('map').setView([49.748, 6.6536], 10); // Setzen Sie die Koordinaten und Zoomstufe Ihrer Karte
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // 3 verschiedene Base Layers
+
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Kartenquelle: <a href="https://www.openstreetmap.org">OpenStreetMap</a>'
         }).addTo(map);
+
+        var OpenStreetMap_France = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+	    maxZoom: 20,
+	    attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+	    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	    subdomains: 'abcd',
+	    minZoom: 1,
+	    maxZoom: 16,
+	    ext: 'jpg'
+        });
+
+        
 
         // Maßstab
         var scale = L.control.scale({
@@ -35,19 +52,62 @@
         })
         scale.addTo(map);
 
-        var Weisshaus = new L.marker    ([49.7779, 6.6415]); //noch verorten
-        var Busental = new L.marker    ([49.7679, 6.6515]); // noch verorten
+        // Marker
 
-        L.featureGroup([
+        var Weisshaus = new L.marker    ([49.7725, 6.6418]); 
+        var Busental = new L.marker    ([49.766, 6.611]); 
+        var Mehring = new L.marker    ([49.8004, 6.8332]); 
+        var Leiwen = new L.marker    ([49.8085, 6.877]); 
+        var Tarforst = new L.marker ([49.7462, 6.7152]);
+        var Genuveva = new L.marker ([49.8059, 6.6475]);
+
+        var markerTrier = L.featureGroup([
 
                         Weisshaus,
-                        Busental
+                        Busental,
+                        Mehring,
+                        Leiwen,
+                        Tarforst,
+                        Genuveva
                     ])
                     .bindPopup ('Gewandert in Trier')
                     .addTo(map)
         
+
+        var Brotdorf = new L.marker    ([49.4815, 6.6791]); 
+        var Rimlingen = new L.marker    ([49.4851, 6.7386]); 
+        var Ruheforst = new L.marker    ([49.5128, 6.6448]); 
+        var Windräder = new L.marker    ([49.4994, 6.735]); 
+        var LosheimSee = new L.marker ([49.5265, 6.7288]);
+        var Merzig = new L.marker ([49.4573, 6.6478]);
+
+        var markerSaarland = L.featureGroup([
+
+                Brotdorf,
+                Rimlingen,
+                Ruheforst,
+                Windräder,
+                LosheimSee,
+                Merzig
+                    ])
+                    .bindPopup ('Gewandert im Saarland')
+                    .addTo(map)
     
             
+    // Leaflet layer control
+    var baseMaps = {
+            'Open Street Map' : osm, 
+            'OSM France' : OpenStreetMap_France,
+            'Watercolor' : Stamen_Watercolor
+        }
+
+        var overlays = {
+            'Wandern Trier' : markerTrier,
+            'Wandern Saarland' : markerSaarland
+        }
+
+        L.control.layers(baseMaps, overlays).addTo(map);
+
     </script>
 </body>
 </html>
