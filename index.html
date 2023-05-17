@@ -38,12 +38,12 @@
         var Weisshaus = new L.marker    ([49.7779, 6.6415]); //noch verorten
         var Busental = new L.marker    ([49.7679, 6.6515]); // noch verorten
 
-        L.layerGroup([
+        L.featureGroup([
 
                         Weisshaus,
                         Busental
                     ])
-
+                    .bindPopup ('Gewandert in Trier')
                     .addTo(map)
         
     
